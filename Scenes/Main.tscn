@@ -1,0 +1,151 @@
+[gd_scene load_steps=19 format=3 uid="uid://dvduudlcclqi6"]
+
+[ext_resource type="Script" path="res://Scripts/main.gd" id="1_as3wo"]
+[ext_resource type="Texture2D" uid="uid://dktq62qyqacsh" path="res://Assets/Stars.jpg" id="1_cn44u"]
+[ext_resource type="Script" path="res://Scripts/Center_Thingy.gd" id="1_wovcc"]
+[ext_resource type="Texture2D" uid="uid://jcwwr053lckf" path="res://Assets/moon.webp" id="3_8yt1c"]
+[ext_resource type="Script" path="res://Scripts/moon.gd" id="4_66bt7"]
+[ext_resource type="Texture2D" uid="uid://vbjpj0f8tmoa" path="res://Assets/Shine.png" id="5_kjjba"]
+[ext_resource type="Script" path="res://Scripts/shine.gd" id="6_wc6k0"]
+[ext_resource type="Script" path="res://Scripts/counter.gd" id="8_3ih7h"]
+[ext_resource type="FontFile" uid="uid://b7hvafxtp0haq" path="res://Fonts/JetBrainsMono-VariableFont_wght.ttf" id="8_tdofb"]
+[ext_resource type="Texture2D" uid="uid://btmmbrt26jxob" path="res://Assets/(100, 100)Diamond_Pickaxe.png" id="9_a41yh"]
+[ext_resource type="Script" path="res://Scripts/item.gd" id="10_tpu6q"]
+[ext_resource type="Script" path="res://Scripts/debug.gd" id="11_3i1qh"]
+[ext_resource type="Texture2D" uid="uid://c68qv65jeqvc8" path="res://Assets/(100, 100)Neptunian_Mining_Drill.png" id="11_evc8d"]
+[ext_resource type="Texture2D" uid="uid://cjfcwig7gyohc" path="res://Assets/(100, 100)Mining_Lazer.png" id="13_sqjeg"]
+[ext_resource type="Texture2D" uid="uid://bqqucgr7xruw7" path="res://Assets/(100, 100)Nuke.png" id="14_dw2hp"]
+[ext_resource type="Texture2D" uid="uid://6c4km6h8e4bx" path="res://Assets/(100, 100)Death_Star.png" id="15_7jnbq"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dh856"]
+radius = 128.763
+
+[sub_resource type="LabelSettings" id="LabelSettings_3ts5r"]
+font = ExtResource("8_tdofb")
+font_size = 50
+
+[node name="Controller" type="Node2D" groups=["Controller"]]
+script = ExtResource("1_as3wo")
+
+[node name="Stars" type="Sprite2D" parent="."]
+modulate = Color(0.881937, 0.881937, 0.881937, 1)
+position = Vector2(-144.809, -93.9531)
+scale = Vector2(1.18359, 0.798828)
+texture = ExtResource("1_cn44u")
+offset = Vector2(609, 552)
+
+[node name="Shine" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.501961)
+position = Vector2(572, 371.96)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("5_kjjba")
+script = ExtResource("6_wc6k0")
+
+[node name="Center Thingy" type="Area2D" parent="."]
+script = ExtResource("1_wovcc")
+
+[node name="Click Detector" type="CollisionShape2D" parent="Center Thingy"]
+position = Vector2(572, 371.96)
+shape = SubResource("CircleShape2D_dh856")
+
+[node name="Moon" type="Sprite2D" parent="Center Thingy/Click Detector" groups=["Moon"]]
+modulate = Color(0.83, 0.46729, 0.3569, 1)
+z_index = 1
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("3_8yt1c")
+script = ExtResource("4_66bt7")
+
+[node name="Counter" type="Label" parent="."]
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 507.0
+offset_top = 20.0
+offset_right = 635.0
+offset_bottom = 105.0
+grow_horizontal = 2
+size_flags_horizontal = 3
+text = "Hi!"
+label_settings = SubResource("LabelSettings_3ts5r")
+horizontal_alignment = 1
+script = ExtResource("8_3ih7h")
+
+[node name="Shop" type="Node" parent="."]
+
+[node name="Picks" type="Button" parent="Shop"]
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 190.0
+offset_bottom = 118.0
+scale = Vector2(0.987539, 1.02355)
+size_flags_horizontal = 3
+text = "Picks (0):
+Cost x
+Prod x"
+icon = ExtResource("9_a41yh")
+script = ExtResource("10_tpu6q")
+metadata/item = "Picks"
+
+[node name="Drills" type="Button" parent="Shop"]
+offset_left = 10.0
+offset_top = 130.0
+offset_right = 190.0
+offset_bottom = 238.0
+scale = Vector2(0.987539, 1.02355)
+size_flags_horizontal = 3
+text = "Drill (0):
+Cost x
+Prod x"
+icon = ExtResource("11_evc8d")
+script = ExtResource("10_tpu6q")
+metadata/item = "Drills"
+
+[node name="Lasers" type="Button" parent="Shop"]
+offset_left = 10.0
+offset_top = 253.26
+offset_right = 200.0
+offset_bottom = 361.26
+scale = Vector2(0.987539, 1.02355)
+size_flags_horizontal = 3
+text = "Lasers (0):
+Cost x
+Prod x"
+icon = ExtResource("13_sqjeg")
+script = ExtResource("10_tpu6q")
+metadata/item = "Lasers"
+
+[node name="Nukes" type="Button" parent="Shop"]
+offset_left = 10.0
+offset_top = 378.04
+offset_right = 200.0
+offset_bottom = 486.04
+scale = Vector2(0.987539, 1.02355)
+size_flags_horizontal = 3
+text = "Nukes (0):
+Cost x
+Prod x"
+icon = ExtResource("14_dw2hp")
+script = ExtResource("10_tpu6q")
+metadata/item = "Nukes"
+
+[node name="Death Stars" type="Button" parent="Shop"]
+offset_left = 10.0
+offset_top = 498.63
+offset_right = 240.0
+offset_bottom = 606.63
+scale = Vector2(0.987539, 1.02355)
+size_flags_horizontal = 3
+text = "Death Stars (0):
+Cost x
+Prod x"
+icon = ExtResource("15_7jnbq")
+script = ExtResource("10_tpu6q")
+metadata/item = "Death Stars"
+
+[node name="Debug" type="Button" parent="."]
+modulate = Color(1, 1, 1, 0)
+offset_left = 1062.0
+offset_top = 124.0
+offset_right = 1070.0
+offset_bottom = 132.0
+scale = Vector2(1.96, 2)
+script = ExtResource("11_3i1qh")
