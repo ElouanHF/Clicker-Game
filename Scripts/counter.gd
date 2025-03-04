@@ -43,4 +43,6 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	self.text = add_comma(parent.clicks) + "\n" + add_comma(parent.tcps) + " cps"
+	self.text = add_comma(parent.clicks) + \
+		"\n" + add_comma(parent.tcps) + " cps\n" + \
+		"Click Power: " + add_comma(parent.items["Clicks"]["Prod"])

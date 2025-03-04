@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://dvduudlcclqi6"]
+[gd_scene load_steps=22 format=3 uid="uid://dvduudlcclqi6"]
 
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_as3wo"]
 [ext_resource type="Texture2D" uid="uid://dktq62qyqacsh" path="res://Assets/Stars.jpg" id="1_cn44u"]
@@ -16,6 +16,8 @@
 [ext_resource type="Texture2D" uid="uid://cjfcwig7gyohc" path="res://Assets/(100, 100)Mining_Lazer.png" id="13_sqjeg"]
 [ext_resource type="Texture2D" uid="uid://bqqucgr7xruw7" path="res://Assets/(100, 100)Nuke.png" id="14_dw2hp"]
 [ext_resource type="Texture2D" uid="uid://6c4km6h8e4bx" path="res://Assets/(100, 100)Death_Star.png" id="15_7jnbq"]
+[ext_resource type="Texture2D" uid="uid://cfatt6xj61bv8" path="res://Assets/(100, 100)Pointer.png" id="16_p00ko"]
+[ext_resource type="Script" path="res://Scenes/upgrade.gd" id="17_b7m4j"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dh856"]
 radius = 128.763
@@ -23,6 +25,12 @@ radius = 128.763
 [sub_resource type="LabelSettings" id="LabelSettings_3ts5r"]
 font = ExtResource("8_tdofb")
 font_size = 50
+
+[sub_resource type="LabelSettings" id="LabelSettings_nf0mg"]
+font_size = 34
+font_color = Color(1, 1, 1, 0.764706)
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
 
 [node name="Controller" type="Node2D" groups=["Controller"]]
 script = ExtResource("1_as3wo")
@@ -69,9 +77,10 @@ label_settings = SubResource("LabelSettings_3ts5r")
 horizontal_alignment = 1
 script = ExtResource("8_3ih7h")
 
-[node name="Shop" type="Node" parent="."]
+[node name="Item Shop" type="Node2D" parent="."]
+position = Vector2(0, 13.03)
 
-[node name="Picks" type="Button" parent="Shop"]
+[node name="Picks" type="Button" parent="Item Shop" groups=["Items"]]
 offset_left = 10.0
 offset_top = 10.0
 offset_right = 190.0
@@ -85,7 +94,7 @@ icon = ExtResource("9_a41yh")
 script = ExtResource("10_tpu6q")
 metadata/item = "Picks"
 
-[node name="Drills" type="Button" parent="Shop"]
+[node name="Drills" type="Button" parent="Item Shop" groups=["Items"]]
 offset_left = 10.0
 offset_top = 130.0
 offset_right = 190.0
@@ -99,7 +108,7 @@ icon = ExtResource("11_evc8d")
 script = ExtResource("10_tpu6q")
 metadata/item = "Drills"
 
-[node name="Lasers" type="Button" parent="Shop"]
+[node name="Lasers" type="Button" parent="Item Shop" groups=["Items"]]
 offset_left = 10.0
 offset_top = 253.26
 offset_right = 200.0
@@ -113,7 +122,7 @@ icon = ExtResource("13_sqjeg")
 script = ExtResource("10_tpu6q")
 metadata/item = "Lasers"
 
-[node name="Nukes" type="Button" parent="Shop"]
+[node name="Nukes" type="Button" parent="Item Shop" groups=["Items"]]
 offset_left = 10.0
 offset_top = 378.04
 offset_right = 200.0
@@ -127,7 +136,7 @@ icon = ExtResource("14_dw2hp")
 script = ExtResource("10_tpu6q")
 metadata/item = "Nukes"
 
-[node name="Death Stars" type="Button" parent="Shop"]
+[node name="Death Stars" type="Button" parent="Item Shop" groups=["Items"]]
 offset_left = 10.0
 offset_top = 498.63
 offset_right = 240.0
@@ -141,11 +150,146 @@ icon = ExtResource("15_7jnbq")
 script = ExtResource("10_tpu6q")
 metadata/item = "Death Stars"
 
+[node name="Upgrade Shop" type="Node2D" parent="."]
+position = Vector2(50, 0)
+scale = Vector2(0.95, 0.95)
+
+[node name="Clicks" type="Button" parent="Upgrade Shop"]
+offset_left = 917.0
+offset_top = 7.0
+offset_right = 1143.0
+offset_bottom = 115.0
+size_flags_horizontal = 3
+text = "(0) - x"
+icon = ExtResource("16_p00ko")
+script = ExtResource("17_b7m4j")
+metadata/upgrade = "Clicks"
+
+[node name="x2" type="Label" parent="Upgrade Shop/Clicks"]
+layout_mode = 0
+offset_left = 46.0
+offset_top = 57.0
+offset_right = 105.0
+offset_bottom = 104.0
+text = "x2"
+label_settings = SubResource("LabelSettings_nf0mg")
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[node name="Picks" type="Button" parent="Upgrade Shop"]
+offset_left = 917.0
+offset_top = 117.0
+offset_right = 1143.0
+offset_bottom = 225.0
+size_flags_horizontal = 3
+text = "(0) - x"
+icon = ExtResource("9_a41yh")
+script = ExtResource("17_b7m4j")
+metadata/upgrade = "Picks"
+
+[node name="x2" type="Label" parent="Upgrade Shop/Picks"]
+layout_mode = 0
+offset_left = 46.0
+offset_top = 57.0
+offset_right = 105.0
+offset_bottom = 104.0
+text = "x2"
+label_settings = SubResource("LabelSettings_nf0mg")
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[node name="Drills" type="Button" parent="Upgrade Shop"]
+offset_left = 917.0
+offset_top = 227.0
+offset_right = 1143.0
+offset_bottom = 335.0
+size_flags_horizontal = 3
+text = "(0) - x"
+icon = ExtResource("11_evc8d")
+script = ExtResource("17_b7m4j")
+metadata/upgrade = "Drills"
+
+[node name="x2" type="Label" parent="Upgrade Shop/Drills"]
+layout_mode = 0
+offset_left = 46.0
+offset_top = 57.0
+offset_right = 105.0
+offset_bottom = 104.0
+text = "x2"
+label_settings = SubResource("LabelSettings_nf0mg")
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[node name="Lasers" type="Button" parent="Upgrade Shop"]
+offset_left = 917.0
+offset_top = 337.0
+offset_right = 1143.0
+offset_bottom = 445.0
+size_flags_horizontal = 3
+text = "(0) - x"
+icon = ExtResource("13_sqjeg")
+script = ExtResource("17_b7m4j")
+metadata/upgrade = "Lasers"
+
+[node name="x2" type="Label" parent="Upgrade Shop/Lasers"]
+layout_mode = 0
+offset_left = 46.0
+offset_top = 57.0
+offset_right = 105.0
+offset_bottom = 104.0
+text = "x2"
+label_settings = SubResource("LabelSettings_nf0mg")
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[node name="Nukes" type="Button" parent="Upgrade Shop"]
+offset_left = 917.0
+offset_top = 447.0
+offset_right = 1143.0
+offset_bottom = 555.0
+size_flags_horizontal = 3
+text = "(0) - x"
+icon = ExtResource("14_dw2hp")
+script = ExtResource("17_b7m4j")
+metadata/upgrade = "Nukes"
+
+[node name="x2" type="Label" parent="Upgrade Shop/Nukes"]
+layout_mode = 0
+offset_left = 46.0
+offset_top = 57.0
+offset_right = 105.0
+offset_bottom = 104.0
+text = "x2"
+label_settings = SubResource("LabelSettings_nf0mg")
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[node name="Death Stars" type="Button" parent="Upgrade Shop"]
+offset_left = 917.0
+offset_top = 557.0
+offset_right = 1143.0
+offset_bottom = 665.0
+size_flags_horizontal = 3
+text = "(0) - x"
+icon = ExtResource("15_7jnbq")
+script = ExtResource("17_b7m4j")
+metadata/upgrade = "Death Stars"
+
+[node name="x2" type="Label" parent="Upgrade Shop/Death Stars"]
+layout_mode = 0
+offset_left = 46.0
+offset_top = 57.0
+offset_right = 105.0
+offset_bottom = 104.0
+text = "x2"
+label_settings = SubResource("LabelSettings_nf0mg")
+horizontal_alignment = 2
+vertical_alignment = 2
+
 [node name="Debug" type="Button" parent="."]
 modulate = Color(1, 1, 1, 0)
-offset_left = 1062.0
-offset_top = 124.0
-offset_right = 1070.0
-offset_bottom = 132.0
+offset_left = 498.0
+offset_right = 506.0
+offset_bottom = 8.0
 scale = Vector2(1.96, 2)
 script = ExtResource("11_3i1qh")

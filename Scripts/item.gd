@@ -6,20 +6,19 @@ var item: String
 func _ready() -> void:
 	item = self.get_meta("item")
 	controller = get_tree().get_nodes_in_group("Controller")[0]
-	self.text = item +\
-				" (" + str(add_comma(controller.items[item]["Num"])) +\
-				"):\nCost " + str(add_comma(snapped(controller.items[item]["Cost"], 0.1))) +\
-				"\nProd " +\
-				str(add_comma(controller.items[item]["Prod"])) 
+	self.update()
 
 func _pressed() -> void:
 	controller.add_item(item)
-	self.text = item +\
-				" (" + str(add_comma(controller.items[item]["Num"])) +\
-				"):\nCost " + str(add_comma(snapped(controller.items[item]["Cost"], 0.1))) +\
-				"\nProd " +\
-				str(add_comma(controller.items[item]["Prod"])) 
+	self.update()
 
+func update() -> void:
+	self.text = item +\
+			" (" + str(add_comma(controller.items[item]["Num"])) +\
+			"):\nCost " + str(add_comma(snapped(controller.items[item]["Cost"], 0.1))) +\
+			"\nProd " +\
+			str(add_comma(controller.items[item]["Prod"])) 
+	
 func add_comma(value: float) -> String:
 	# Convert value to string.
 	var str_value: String = str(snapped(value, 0.1))
