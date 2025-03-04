@@ -29,7 +29,7 @@ var upgrades = {
 
 func _process(delta: float) -> void:
 	clicks += auto_clicks_ps * delta
-	cps = clicks_to_av / av_time
+	cps = (clicks_to_av / av_time) * items["Clicks"]["Prod"]
 	tcps = cps + auto_clicks_ps
 
 func _recalc_acps() -> void:

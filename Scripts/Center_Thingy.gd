@@ -34,7 +34,7 @@ func on_click():
 	is_pressed = true
 	node.scale = Vector2(size * shrink, size * shrink)
 	parent.clicks += parent.items["Clicks"]["Prod"]
-	parent.clicks_to_av += parent.items["Clicks"]["Prod"]
+	parent.clicks_to_av += 1
 	_delay(parent.av_time, decrease_cps)
 
 func on_release():
@@ -43,4 +43,4 @@ func on_release():
 	node.scale = Vector2(size, size)
 
 func decrease_cps():
-	parent.clicks_to_av -= parent.items["Clicks"]["Prod"]
+	parent.clicks_to_av -= 1
